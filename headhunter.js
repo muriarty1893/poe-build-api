@@ -2,7 +2,7 @@ const { NinjaAPI } = require("poe-api-manager");
 
 const ninjaAPI = new NinjaAPI("Settlers");
 
-const iname = "Headhunter";
+const iname = "Mageblood"; // case sensitive !
 
 const fetchItemPrice = async () => {
   try {
@@ -10,7 +10,7 @@ const fetchItemPrice = async () => {
     const unqiueAccessoryItemrn = uniqueAccessories.find(item => item.name === iname);
 
     if (unqiueAccessoryItemrn) {
-      console.log(iname ,`Price in Divine :`, unqiueAccessoryItemrn.divineValue);
+      console.log(iname ,`Price in Divine :`, unqiueAccessoryItemrn.divineValue); 
     } else {
       console.log(iname, "item not found.");
     }
