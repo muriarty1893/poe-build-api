@@ -2,15 +2,15 @@ const { NinjaAPI } = require("poe-api-manager");
 
 const ninjaAPI = new NinjaAPI("Settlers");
 
-const iname = "headhunter";
+const iname = "Headhunter";
 
-const fetchHeadhunterPrice = async () => {
+const fetchItemPrice = async () => {
   try {
     const uniqueAccessories = await ninjaAPI.itemView.uniqueAccessory.getData();
-    const headhunter = uniqueAccessories.find(item => item.name === "Headhunter");
+    const unqiueAccessoryItemrn = uniqueAccessories.find(item => item.name === iname);
 
-    if (headhunter) {
-      console.log(iname ,`Price in Divine :`, headhunter.divineValue);
+    if (unqiueAccessoryItemrn) {
+      console.log(iname ,`Price in Divine :`, unqiueAccessoryItemrn.divineValue);
     } else {
       console.log(iname, "item not found.");
     }
@@ -19,4 +19,4 @@ const fetchHeadhunterPrice = async () => {
   }
 };
 
-fetchHeadhunterPrice();
+fetchItemPrice();
