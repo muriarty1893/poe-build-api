@@ -1,25 +1,22 @@
-const { NinjaAPI } = require("poe-api-manager");
-const ninjaAPI = new NinjaAPI("Settlers");
-const requestedProperties = ["id", "name", "icon"];
+const { NinjaAPI, WatchAPI } = require("poe-api-manager");
+const ninjaAPI = new NinjaAPI("Settlers"); // League name
+const watchAPI = new WatchAPI("Settlers");
 
-const iname = "Mageblood"; // case sensitive !
+const requestedProperties = ["id", "name", "divineValue", "explicitModifiers"];
+
+const iname = "Mageblood"; // case sensitive item name !
 
 const fetchItemPrice = async () => {
-  try {
-    const uniqueAccessories = await ninjaAPI.itemView.uniqueAccessory.getData();
-    const unqiueAccessoryItemrn = uniqueAccessories.find(item => item.name === iname);
-    
-    const currencyData = await ninjaAPI.itemView.uniqueAccessory.getData(requestedProperties);
-    console.log("poe.ninja Currency Data:", currencyData);
-    
-    if (unqiueAccessoryItemrn) {
-      console.log(iname ,`Price in Divine :`, unqiueAccessoryItemrn.divineValue); 
-    } else {
-      console.log(iname, "item not found.");
-    }
-  } catch (error) {
-    console.error("Error fetching", iname, "data:", error);
+
+  const theItem = await ninjaAPI.itemView.uniqueAccessory.getData(requestedProperties);
+  const itemOut = theItem.find(item => item.name === iname);
+  
+  if (itemOut) {
+    console.log("poe.ninja Currency Data:", itemOut);
+  } else {
+    console.log(iname, "not found.");
   }
+  
 };
 
 fetchItemPrice();
