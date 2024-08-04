@@ -4,7 +4,7 @@ const watchAPI = new WatchAPI("Settlers");
 
 const requestedProperties = ["id", "name", "divineValue", "explicitModifiers"];
 
-const iname = "Mageblood"; // case sensitive item name !
+const iname = "Headhunter"; // case sensitive item name !
 
 const fetchItemPrice = async () => {
 
