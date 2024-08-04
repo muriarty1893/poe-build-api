@@ -1,8 +1,8 @@
 const { NinjaAPI, WatchAPI } = require("poe-api-manager");
 
 // NinjaAPI ve WatchAPI nesnelerini başlatın
-const ninjaAPI = new NinjaAPI("League-Name");
-const watchAPI = new WatchAPI("League-Name");
+const ninjaAPI = new NinjaAPI("Settlers");
+const watchAPI = new WatchAPI("Settlers");
 
 const requestedProperties = ["id", "name", "icon"];
 
