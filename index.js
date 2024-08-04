@@ -1,28 +1,24 @@
-const { NinjaAPI, WatchAPI } = require("poe-api-manager");
+const { NinjaAPI } = require("poe-api-manager");
 
-// NinjaAPI ve WatchAPI nesnelerini başlatın
 const ninjaAPI = new NinjaAPI("Settlers");
-const watchAPI = new WatchAPI("Settlers");
 
-const requestedProperties = ["id", "name", "icon"];
-
-const fetchData = async () => {
+const fetchHeadhunterPrice = async () => {
   try {
-    // poe.ninja'dan Yağ (Oil) verilerini al
-    const oilData = await ninjaAPI.itemView.oil.getData(requestedProperties);
-    console.log("poe.ninja Oil Data:", oilData);
+    
+    const uniqueAccessories = await ninjaAPI.itemView.uniqueAccessories.getData();
+    
+    const headhunter = uniqueAccessories.find(item => item.name === "Headhunter");
 
-    // poe.ninja'dan Para Birimi (Currency) verilerini al
-    const currencyData = await ninjaAPI.currencyView.currency.getData(requestedProperties);
-    console.log("poe.ninja Currency Data:", currencyData);
+    if (headhunter) {
+      console.log(`Headhunter item found:`, headhunter);
 
-    // poe.watch'tan Scarab verilerini al
-    const scarabData = await watchAPI.view.scarab.getData(requestedProperties);
-    console.log("poe.watch Scarab Data:", scarabData);
+      console.log(`Headhunter Price in Chaos:`, headhunter.chaosEquivalent);
+    } else {
+      console.log("Headhunter item not found.");
+    }
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching Headhunter data:", error);
   }
 };
 
-// Verileri al ve göster
-fetchData();
+fetchHeadhunterPrice();
